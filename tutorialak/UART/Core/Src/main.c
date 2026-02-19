@@ -128,17 +128,17 @@ int main(void)
 	  //UART
 	  if (B1FLAG)
 	  {
-		  HAL_UART_Transmit(&huart1,msg1,sizeof(msg1),10);
+		  HAL_UART_Transmit(COM1,msg1,sizeof(msg1),100);
 		  B1FLAG=0;
 	  }
 	  if (B2FLAG)
 	  {
-		  HAL_UART_Transmit(&huart1,msg2,sizeof(msg2),10);
+		  HAL_UART_Transmit(COM1,msg2,sizeof(msg2),100);
 		  B2FLAG=0;
 	  }
 	  if (B3FLAG)
 	  {
-		  HAL_UART_Transmit(&huart1,msg3,sizeof(msg3),10);
+		  HAL_UART_Transmit(COM1,msg3,sizeof(msg3),100);
 		  B3FLAG=0;
 	  }
   }
