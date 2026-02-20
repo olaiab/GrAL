@@ -47,9 +47,7 @@
 COM_InitTypeDef BspCOMInit;
 
 /* USER CODE BEGIN PV */
-uint8_t msg1[] = ".";
-uint8_t msg2[] = "-";
-uint8_t msg3[] = " ";
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,7 +58,11 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t rx_buffer;
+uint8_t data[]="UART probatzen\n";
+uint8_t msg1[] = ".";
+uint8_t msg2[] = "-";
+uint8_t msg3[] = " ";
 /* USER CODE END 0 */
 
 /**
@@ -125,22 +127,28 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //UART
+	  printf(data);
+	  //HAL_UART_Transmit(&huart1, (uint8_t *)data, sizeof(data), 1000);
+	  BSP_LED_Toggle(LED2);
+	  HAL_Delay(1000);
+
+	  /*
 	  if (B1FLAG)
 	  {
-		  HAL_UART_Transmit(COM1,msg1,sizeof(msg1),100);
+		  printf(msg1);
 		  B1FLAG=0;
 	  }
 	  if (B2FLAG)
 	  {
-		  HAL_UART_Transmit(COM1,msg2,sizeof(msg2),100);
+		  printf(msg2);
 		  B2FLAG=0;
 	  }
 	  if (B3FLAG)
 	  {
-		  HAL_UART_Transmit(COM1,msg3,sizeof(msg3),100);
+		  printf(msg3);
 		  B3FLAG=0;
 	  }
+	  */
   }
   /* USER CODE END 3 */
 }

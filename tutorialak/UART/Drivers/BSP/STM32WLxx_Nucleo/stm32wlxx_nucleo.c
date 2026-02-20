@@ -370,13 +370,16 @@ __weak void BSP_PB_Callback(Button_TypeDef Button)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(Button);
+
   switch (Button)
     {
 	  case BUTTON_SW1:
 		  B1FLAG=1;
+		  printf(".");
 		  break;
 	  case BUTTON_SW2:
 		  B2FLAG=1;
+		  printf("-");
 		  break;
 	  case BUTTON_SW3:
 		  B3FLAG=1;
@@ -384,6 +387,7 @@ __weak void BSP_PB_Callback(Button_TypeDef Button)
 	  default:
 		  break;
     }
+
 
   /* This function should be implemented by the user application.
      It is called into this driver when an event on Button is triggered. */
