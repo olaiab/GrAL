@@ -74,7 +74,7 @@ int main(void)
 
 	//2seg kontatu
 	TIM17_PSC = 47999;
-	TIM17_ARR = 1999;
+	TIM17_ARR = 199;
 
 	//UG bit 0 set to 1
 	TIM17_EGR |= (1 << 0);
@@ -135,7 +135,7 @@ int main(void)
 	  //STATUS REGISTER bit 0 update interrupt flag == 1 --> 2 segundu kontatu ditu
 	  if (TIM17_SR & (1 << 0))
 	  {
-		  HAL_GPIO_TogglePin(LED2_GPIO_PORT, LED2_PIN);
+		  HAL_GPIO_TogglePin(LED1_GPIO_PORT, LED1_PIN);
 		  TIM17_SR &= ~(1 << 0);
 	  }
     /* USER CODE BEGIN 3 */

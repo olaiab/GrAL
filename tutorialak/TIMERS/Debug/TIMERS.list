@@ -27,13 +27,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 0000002a  00000000  00000000  00005040  2**0
                   CONTENTS, READONLY
- 12 .debug_line   0000fae8  00000000  00000000  0000506a  2**0
+ 12 .debug_line   0000fae9  00000000  00000000  0000506a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_line_str 0000006f  00000000  00000000  00014b52  2**0
+ 13 .debug_line_str 0000006f  00000000  00000000  00014b53  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_info   0000fea6  00000000  00000000  00014bc1  2**0
+ 14 .debug_info   0000fea6  00000000  00000000  00014bc2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 00002708  00000000  00000000  00024a67  2**0
+ 15 .debug_abbrev 00002708  00000000  00000000  00024a68  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_aranges 00001070  00000000  00000000  00027170  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -598,133 +598,134 @@ int main(void)
  8000588:	4b2e      	ldr	r3, [pc, #184]	@ (8000644 <main+0xcc>)
  800058a:	f64b 327f 	movw	r2, #47999	@ 0xbb7f
  800058e:	601a      	str	r2, [r3, #0]
-	TIM17_ARR = 1999;
+	TIM17_ARR = 199;
  8000590:	4b2d      	ldr	r3, [pc, #180]	@ (8000648 <main+0xd0>)
- 8000592:	f240 72cf 	movw	r2, #1999	@ 0x7cf
- 8000596:	601a      	str	r2, [r3, #0]
+ 8000592:	22c7      	movs	r2, #199	@ 0xc7
+ 8000594:	601a      	str	r2, [r3, #0]
 
 	//UG bit 0 set to 1
 	TIM17_EGR |= (1 << 0);
- 8000598:	4b2c      	ldr	r3, [pc, #176]	@ (800064c <main+0xd4>)
- 800059a:	681b      	ldr	r3, [r3, #0]
- 800059c:	4a2b      	ldr	r2, [pc, #172]	@ (800064c <main+0xd4>)
- 800059e:	f043 0301 	orr.w	r3, r3, #1
- 80005a2:	6013      	str	r3, [r2, #0]
+ 8000596:	4b2d      	ldr	r3, [pc, #180]	@ (800064c <main+0xd4>)
+ 8000598:	681b      	ldr	r3, [r3, #0]
+ 800059a:	4a2c      	ldr	r2, [pc, #176]	@ (800064c <main+0xd4>)
+ 800059c:	f043 0301 	orr.w	r3, r3, #1
+ 80005a0:	6013      	str	r3, [r2, #0]
 
 	//Enable TIM17 bit 0 set to 1
 	TIM17_CR1 |= (1 << 0);
- 80005a4:	4b2a      	ldr	r3, [pc, #168]	@ (8000650 <main+0xd8>)
- 80005a6:	681b      	ldr	r3, [r3, #0]
- 80005a8:	4a29      	ldr	r2, [pc, #164]	@ (8000650 <main+0xd8>)
- 80005aa:	f043 0301 	orr.w	r3, r3, #1
- 80005ae:	6013      	str	r3, [r2, #0]
+ 80005a2:	4b2b      	ldr	r3, [pc, #172]	@ (8000650 <main+0xd8>)
+ 80005a4:	681b      	ldr	r3, [r3, #0]
+ 80005a6:	4a2a      	ldr	r2, [pc, #168]	@ (8000650 <main+0xd8>)
+ 80005a8:	f043 0301 	orr.w	r3, r3, #1
+ 80005ac:	6013      	str	r3, [r2, #0]
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
- 80005b0:	f000 fb70 	bl	8000c94 <HAL_Init>
+ 80005ae:	f000 fb71 	bl	8000c94 <HAL_Init>
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
- 80005b4:	f000 f854 	bl	8000660 <SystemClock_Config>
+ 80005b2:	f000 f855 	bl	8000660 <SystemClock_Config>
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
- 80005b8:	f7ff ffb6 	bl	8000528 <MX_GPIO_Init>
+ 80005b6:	f7ff ffb7 	bl	8000528 <MX_GPIO_Init>
   MX_USART1_UART_Init();
- 80005bc:	f000 f926 	bl	800080c <MX_USART1_UART_Init>
+ 80005ba:	f000 f927 	bl	800080c <MX_USART1_UART_Init>
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Initialize leds */
   BSP_LED_Init(LED_BLUE);
- 80005c0:	2000      	movs	r0, #0
- 80005c2:	f000 f9e5 	bl	8000990 <BSP_LED_Init>
+ 80005be:	2000      	movs	r0, #0
+ 80005c0:	f000 f9e6 	bl	8000990 <BSP_LED_Init>
   BSP_LED_Init(LED_GREEN);
- 80005c6:	2001      	movs	r0, #1
- 80005c8:	f000 f9e2 	bl	8000990 <BSP_LED_Init>
+ 80005c4:	2001      	movs	r0, #1
+ 80005c6:	f000 f9e3 	bl	8000990 <BSP_LED_Init>
   BSP_LED_Init(LED_RED);
- 80005cc:	2002      	movs	r0, #2
- 80005ce:	f000 f9df 	bl	8000990 <BSP_LED_Init>
+ 80005ca:	2002      	movs	r0, #2
+ 80005cc:	f000 f9e0 	bl	8000990 <BSP_LED_Init>
 
   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
   BSP_PB_Init(BUTTON_SW1, BUTTON_MODE_EXTI);
- 80005d2:	2101      	movs	r1, #1
- 80005d4:	2000      	movs	r0, #0
- 80005d6:	f000 fa15 	bl	8000a04 <BSP_PB_Init>
+ 80005d0:	2101      	movs	r1, #1
+ 80005d2:	2000      	movs	r0, #0
+ 80005d4:	f000 fa16 	bl	8000a04 <BSP_PB_Init>
   BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
- 80005da:	2101      	movs	r1, #1
- 80005dc:	2001      	movs	r0, #1
- 80005de:	f000 fa11 	bl	8000a04 <BSP_PB_Init>
+ 80005d8:	2101      	movs	r1, #1
+ 80005da:	2001      	movs	r0, #1
+ 80005dc:	f000 fa12 	bl	8000a04 <BSP_PB_Init>
   BSP_PB_Init(BUTTON_SW3, BUTTON_MODE_EXTI);
- 80005e2:	2101      	movs	r1, #1
- 80005e4:	2002      	movs	r0, #2
- 80005e6:	f000 fa0d 	bl	8000a04 <BSP_PB_Init>
+ 80005e0:	2101      	movs	r1, #1
+ 80005e2:	2002      	movs	r0, #2
+ 80005e4:	f000 fa0e 	bl	8000a04 <BSP_PB_Init>
 
   /* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */
   BspCOMInit.BaudRate   = 115200;
- 80005ea:	4b1a      	ldr	r3, [pc, #104]	@ (8000654 <main+0xdc>)
- 80005ec:	f44f 32e1 	mov.w	r2, #115200	@ 0x1c200
- 80005f0:	601a      	str	r2, [r3, #0]
+ 80005e8:	4b1a      	ldr	r3, [pc, #104]	@ (8000654 <main+0xdc>)
+ 80005ea:	f44f 32e1 	mov.w	r2, #115200	@ 0x1c200
+ 80005ee:	601a      	str	r2, [r3, #0]
   BspCOMInit.WordLength = COM_WORDLENGTH_8B;
- 80005f2:	4b18      	ldr	r3, [pc, #96]	@ (8000654 <main+0xdc>)
- 80005f4:	2200      	movs	r2, #0
- 80005f6:	605a      	str	r2, [r3, #4]
+ 80005f0:	4b18      	ldr	r3, [pc, #96]	@ (8000654 <main+0xdc>)
+ 80005f2:	2200      	movs	r2, #0
+ 80005f4:	605a      	str	r2, [r3, #4]
   BspCOMInit.StopBits   = COM_STOPBITS_1;
- 80005f8:	4b16      	ldr	r3, [pc, #88]	@ (8000654 <main+0xdc>)
- 80005fa:	2200      	movs	r2, #0
- 80005fc:	811a      	strh	r2, [r3, #8]
+ 80005f6:	4b17      	ldr	r3, [pc, #92]	@ (8000654 <main+0xdc>)
+ 80005f8:	2200      	movs	r2, #0
+ 80005fa:	811a      	strh	r2, [r3, #8]
   BspCOMInit.Parity     = COM_PARITY_NONE;
- 80005fe:	4b15      	ldr	r3, [pc, #84]	@ (8000654 <main+0xdc>)
- 8000600:	2200      	movs	r2, #0
- 8000602:	815a      	strh	r2, [r3, #10]
+ 80005fc:	4b15      	ldr	r3, [pc, #84]	@ (8000654 <main+0xdc>)
+ 80005fe:	2200      	movs	r2, #0
+ 8000600:	815a      	strh	r2, [r3, #10]
   BspCOMInit.HwFlowCtl  = COM_HWCONTROL_NONE;
- 8000604:	4b13      	ldr	r3, [pc, #76]	@ (8000654 <main+0xdc>)
- 8000606:	2200      	movs	r2, #0
- 8000608:	819a      	strh	r2, [r3, #12]
+ 8000602:	4b14      	ldr	r3, [pc, #80]	@ (8000654 <main+0xdc>)
+ 8000604:	2200      	movs	r2, #0
+ 8000606:	819a      	strh	r2, [r3, #12]
   if (BSP_COM_Init(COM1, &BspCOMInit) != BSP_ERROR_NONE)
- 800060a:	4912      	ldr	r1, [pc, #72]	@ (8000654 <main+0xdc>)
- 800060c:	2000      	movs	r0, #0
- 800060e:	f000 fa9b 	bl	8000b48 <BSP_COM_Init>
- 8000612:	4603      	mov	r3, r0
- 8000614:	2b00      	cmp	r3, #0
- 8000616:	d001      	beq.n	800061c <main+0xa4>
+ 8000608:	4912      	ldr	r1, [pc, #72]	@ (8000654 <main+0xdc>)
+ 800060a:	2000      	movs	r0, #0
+ 800060c:	f000 fa9c 	bl	8000b48 <BSP_COM_Init>
+ 8000610:	4603      	mov	r3, r0
+ 8000612:	2b00      	cmp	r3, #0
+ 8000614:	d001      	beq.n	800061a <main+0xa2>
   {
     Error_Handler();
- 8000618:	f000 f874 	bl	8000704 <Error_Handler>
+ 8000616:	f000 f875 	bl	8000704 <Error_Handler>
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 	  //STATUS REGISTER bit 0 update interrupt flag == 1 --> 2 segundu kontatu ditu
 	  if (TIM17_SR & (1 << 0))
- 800061c:	4b0e      	ldr	r3, [pc, #56]	@ (8000658 <main+0xe0>)
- 800061e:	681b      	ldr	r3, [r3, #0]
- 8000620:	f003 0301 	and.w	r3, r3, #1
- 8000624:	2b00      	cmp	r3, #0
- 8000626:	d0f9      	beq.n	800061c <main+0xa4>
+ 800061a:	4b0f      	ldr	r3, [pc, #60]	@ (8000658 <main+0xe0>)
+ 800061c:	681b      	ldr	r3, [r3, #0]
+ 800061e:	f003 0301 	and.w	r3, r3, #1
+ 8000622:	2b00      	cmp	r3, #0
+ 8000624:	d0f9      	beq.n	800061a <main+0xa2>
 	  {
-		  HAL_GPIO_TogglePin(LED2_GPIO_PORT, LED2_PIN);
- 8000628:	f44f 7100 	mov.w	r1, #512	@ 0x200
- 800062c:	480b      	ldr	r0, [pc, #44]	@ (800065c <main+0xe4>)
- 800062e:	f000 fe84 	bl	800133a <HAL_GPIO_TogglePin>
+		  HAL_GPIO_TogglePin(LED1_GPIO_PORT, LED1_PIN);
+ 8000626:	f44f 4100 	mov.w	r1, #32768	@ 0x8000
+ 800062a:	480c      	ldr	r0, [pc, #48]	@ (800065c <main+0xe4>)
+ 800062c:	f000 fe85 	bl	800133a <HAL_GPIO_TogglePin>
 		  TIM17_SR &= ~(1 << 0);
- 8000632:	4b09      	ldr	r3, [pc, #36]	@ (8000658 <main+0xe0>)
- 8000634:	681b      	ldr	r3, [r3, #0]
- 8000636:	4a08      	ldr	r2, [pc, #32]	@ (8000658 <main+0xe0>)
- 8000638:	f023 0301 	bic.w	r3, r3, #1
- 800063c:	6013      	str	r3, [r2, #0]
+ 8000630:	4b09      	ldr	r3, [pc, #36]	@ (8000658 <main+0xe0>)
+ 8000632:	681b      	ldr	r3, [r3, #0]
+ 8000634:	4a08      	ldr	r2, [pc, #32]	@ (8000658 <main+0xe0>)
+ 8000636:	f023 0301 	bic.w	r3, r3, #1
+ 800063a:	6013      	str	r3, [r2, #0]
 	  if (TIM17_SR & (1 << 0))
- 800063e:	e7ed      	b.n	800061c <main+0xa4>
+ 800063c:	e7ed      	b.n	800061a <main+0xa2>
+ 800063e:	bf00      	nop
  8000640:	58000060 	.word	0x58000060
  8000644:	40014828 	.word	0x40014828
  8000648:	4001482c 	.word	0x4001482c
