@@ -73,8 +73,8 @@ int main(void)
 	RCC_APB2ENR |= (1 << 18);
 
 	//2seg kontatu
-	TIM17_PSC = 47999;
-	TIM17_ARR = 199;
+	TIM17_PSC = 4799;
+	TIM17_ARR = 1999;
 
 	//UG bit 0 set to 1
 	TIM17_EGR |= (1 << 0);

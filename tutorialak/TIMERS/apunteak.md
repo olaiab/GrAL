@@ -33,10 +33,11 @@ Figure 129 and Figure 130 give some examples of the counter behavior when the pr
 
 - Denbora max: Tmax = (maxcount+1)/f
 - Denbora max prescaler = (maxcount+1)*(psc+1)/f
-- fpresk = f(PSC+1)
+- fpresk = f/(PSC+1)
 
 - **Adibidea**
-  - PSC = 4799 ARR = 1999
+  - PSC = 4799 
+  - ARR = 1999
   - fprescalated = 48MHz / (4799+1) = 1kHz
   - Tprescalated = 1/1kHz = 1ms
   - Ttick = 1ms * (1999+1) = 2s
