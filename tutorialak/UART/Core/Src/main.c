@@ -126,30 +126,30 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  printf(data);
-	  BSP_LED_Toggle(LED2);
-	  HAL_Delay(1000);
-
     if (HAL_UART_Receive(&hcom_uart[COM1], &buffer, 1, 1000) == HAL_OK)
     {
       switch (buffer)
       {
-        case 'g':
+        case 'u':
           BSP_LED_On(LED1);
+          HAL_Delay(100);
           BSP_LED_Off(LED1);
           break;
-        case 'u':  
-	        BSP_LED_On(LED2);
-          BSP_LED_Off(LED2);
-          break;
         case 'h':
+			BSP_LED_On(LED2);
+			HAL_Delay(100);
+			BSP_LED_Off(LED2);
+          break;
+        case 'g':
           BSP_LED_On(LED3);
+          HAL_Delay(100);
           BSP_LED_Off(LED3);
           break;
         default:
           BSP_LED_On(LED1);
           BSP_LED_On(LED2);
           BSP_LED_On(LED3);
+          HAL_Delay(100);
           BSP_LED_Off(LED1);
           BSP_LED_Off(LED2);
           BSP_LED_Off(LED3);
