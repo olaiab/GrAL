@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usart.h"
 #include "gpio.h"
 #include "flags.h"
 
@@ -58,7 +57,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t rx_buffer;
+uint8_t buffer;
 uint8_t data[]="UART probatzen\n";
 uint8_t msg1[] = ".";
 uint8_t msg2[] = "-";
@@ -94,7 +93,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -115,6 +113,7 @@ int main(void)
   BspCOMInit.StopBits   = COM_STOPBITS_1;
   BspCOMInit.Parity     = COM_PARITY_NONE;
   BspCOMInit.HwFlowCtl  = COM_HWCONTROL_NONE;
+
   if (BSP_COM_Init(COM1, &BspCOMInit) != BSP_ERROR_NONE)
   {
     Error_Handler();
@@ -128,27 +127,34 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  printf(data);
-	  //HAL_UART_Transmit(&huart1, (uint8_t *)data, sizeof(data), 1000);
 	  BSP_LED_Toggle(LED2);
 	  HAL_Delay(1000);
 
-	  /*
-	  if (B1FLAG)
-	  {
-		  printf(msg1);
-		  B1FLAG=0;
-	  }
-	  if (B2FLAG)
-	  {
-		  printf(msg2);
-		  B2FLAG=0;
-	  }
-	  if (B3FLAG)
-	  {
-		  printf(msg3);
-		  B3FLAG=0;
-	  }
-	  */
+    if (HAL_UART_Receive(&hcom_uart[COM1], &buffer, 1, 1000) == HAL_OK)
+    {
+      switch (buffer)
+      {
+        case 'g':
+          BSP_LED_On(LED1);
+          BSP_LED_Off(LED1);
+          break;
+        case 'u':  
+	        BSP_LED_On(LED2);
+          BSP_LED_Off(LED2);
+          break;
+        case 'h':
+          BSP_LED_On(LED3);
+          BSP_LED_Off(LED3);
+          break;
+        default:
+          BSP_LED_On(LED1);
+          BSP_LED_On(LED2);
+          BSP_LED_On(LED3);
+          BSP_LED_Off(LED1);
+          BSP_LED_Off(LED2);
+          BSP_LED_Off(LED3);
+      }
+    }
   }
   /* USER CODE END 3 */
 }
