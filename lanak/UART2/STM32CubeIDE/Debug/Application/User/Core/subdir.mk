@@ -5,13 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/gpio.c \
-/home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/main.c \
-/home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/stm32wlxx_hal_msp.c \
-/home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/stm32wlxx_it.c \
+/home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/gpio.c \
+/home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/main.c \
+/home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/stm32wlxx_hal_msp.c \
+/home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/stm32wlxx_it.c \
 ../Application/User/Core/syscalls.c \
 ../Application/User/Core/sysmem.c \
-/home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/usart.c 
+/home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/usart.c 
 
 OBJS += \
 ./Application/User/Core/gpio.o \
@@ -33,17 +33,17 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Application/User/Core/gpio.o: /home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/gpio.c Application/User/Core/subdir.mk
+Application/User/Core/gpio.o: /home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/gpio.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
-Application/User/Core/main.o: /home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/main.c Application/User/Core/subdir.mk
+Application/User/Core/main.o: /home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/main.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
-Application/User/Core/stm32wlxx_hal_msp.o: /home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/stm32wlxx_hal_msp.c Application/User/Core/subdir.mk
+Application/User/Core/stm32wlxx_hal_msp.o: /home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/stm32wlxx_hal_msp.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
-Application/User/Core/stm32wlxx_it.o: /home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/stm32wlxx_it.c Application/User/Core/subdir.mk
+Application/User/Core/stm32wlxx_it.o: /home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/stm32wlxx_it.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 Application/User/Core/%.o Application/User/Core/%.su Application/User/Core/%.cyclo: ../Application/User/Core/%.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
-Application/User/Core/usart.o: /home/olaia/Escritorio/GrAL/GitHub/tutorialak/UART2/Core/Src/usart.c Application/User/Core/subdir.mk
+Application/User/Core/usart.o: /home/olaia/Escritorio/GrAL/GitHub/lanak/UART2/Core/Src/usart.c Application/User/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../../Core/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc -I../../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../../Drivers/BSP/STM32WLxx_Nucleo -I../../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-Application-2f-User-2f-Core
