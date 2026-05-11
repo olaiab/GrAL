@@ -99,8 +99,8 @@ int main(void)
 
   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
   BSP_PB_Init(BUTTON_SW1, BUTTON_MODE_EXTI);
-  BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
-  BSP_PB_Init(BUTTON_SW3, BUTTON_MODE_EXTI);
+  //BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
+  //BSP_PB_Init(BUTTON_SW3, BUTTON_MODE_EXTI);
 
   /* Initialize COM1 port (115200, 8 bits (7-bit data + 1 stop bit), no parity */
   BspCOMInit.BaudRate   = 115200;
@@ -117,6 +117,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	    BSP_LED_Off(LED_GREEN);
+	    HAL_Delay(500);
+	    BSP_LED_Off(LED_GREEN);
+	    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -168,11 +172,11 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 /*https://wiki.st.com/stm32mcu/wiki/Getting_started_with_EXTI#Create_the_project_in_STM32CubeIDE*/
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+void BSP_PB_Callback(Button_TypeDef Button)
 {
-  if(GPIO_Pin == PA0_Pin)
+  if(Button == BUTTON_SW1)
   {
-      HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
+    BSP_LED_Toggle(LED_BLUE);
   }
 }
 /* USER CODE END 4 */
