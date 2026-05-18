@@ -34,8 +34,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h \
  ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.h \
  ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_errno.h \
- ../Core/Inc/stm32wlxx_nucleo_conf.h ../Core/Inc/gpio.h \
- ../Core/Inc/main.h
+ ../Core/Inc/stm32wlxx_nucleo_conf.h
 ../Core/Inc/main.h:
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal.h:
 ../Core/Inc/stm32wlxx_hal_conf.h:
@@ -73,5 +72,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.h:
 ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_errno.h:
 ../Core/Inc/stm32wlxx_nucleo_conf.h:
-../Core/Inc/gpio.h:
-../Core/Inc/main.h:

@@ -5,23 +5,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 S_SRCS += \
-../Application/User/Startup/startup_stm32wl55jcix.s 
+../Core/Startup/startup_stm32wl55jcix.s 
 
 OBJS += \
-./Application/User/Startup/startup_stm32wl55jcix.o 
+./Core/Startup/startup_stm32wl55jcix.o 
 
 S_DEPS += \
-./Application/User/Startup/startup_stm32wl55jcix.d 
+./Core/Startup/startup_stm32wl55jcix.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Application/User/Startup/%.o: ../Application/User/Startup/%.s Application/User/Startup/subdir.mk
+Core/Startup/%.o: ../Core/Startup/%.s Core/Startup/subdir.mk
 	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@" "$<"
 
-clean: clean-Application-2f-User-2f-Startup
+clean: clean-Core-2f-Startup
 
-clean-Application-2f-User-2f-Startup:
-	-$(RM) ./Application/User/Startup/startup_stm32wl55jcix.d ./Application/User/Startup/startup_stm32wl55jcix.o
+clean-Core-2f-Startup:
+	-$(RM) ./Core/Startup/startup_stm32wl55jcix.d ./Core/Startup/startup_stm32wl55jcix.o
 
-.PHONY: clean-Application-2f-User-2f-Startup
+.PHONY: clean-Core-2f-Startup
 
