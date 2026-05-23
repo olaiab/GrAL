@@ -1,0 +1,6 @@
+../Core/Src/buttons.c:12:6:BSP_PB_Callback	7
+../Core/Src/buttons.c:46:6:tratatuBotoiak	9
+../Core/Src/buttons.c:83:6:B1Sakatu	1
+../Core/Src/buttons.c:90:6:B2Mantendu	2
+../Core/Src/buttons.c:106:6:B2Sakatu	5
+../Core/Src/buttons.c:134:6:B3Sakatu	1

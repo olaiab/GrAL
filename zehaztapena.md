@@ -53,5 +53,13 @@ Geldirik egonda entrenamendu berria nahi bada (eta aurrekoa gorde) botoia manten
 SW3: Argia piztu/itzali
 ```
 
+Botoiak sakatu diren edo mantendu diren kalkulatzeko rising edge eta falling edgeren arteko denbora kalkulatu.
+
 ##### Datuak gordetzeko modua (SD txartela):
 CSV moduan gorde, hurrengo datuekin: denbora, latitudea, longitudea, abiadura, paladak minutuko. Honela etorkizunean datuak tratatzeko aplikazio bat garatu daiteke mapa batean ibilbidea, abiadura eta dena delako datuak adieraziz. Entrenamendu berri bakoitzeko fitxategi berri bat.
+
+##### Protokoloak eta ezagutu beharrekoak
+- UART -> GPS-rako, eten bidez. Planteatutako moduan GPS-ak eten gabe bidaltzen ditu datuak UART bidez, inkesta bidez eginda datuak galdu genitzake.
+- I2C -> Azelerometrorako ? 
+- SPI -> Pantaila (e-ink erabili ezkero) -> inkesta
+- Timerrak -> Pantaila eguneratzeko, zenbait gauza irakurtzeko, denboragailurako, abiaduraren eta paladen kalkulurako

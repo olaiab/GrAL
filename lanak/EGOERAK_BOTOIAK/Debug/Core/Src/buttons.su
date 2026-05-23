@@ -1,0 +1,6 @@
+../Core/Src/buttons.c:12:6:BSP_PB_Callback	16	static
+../Core/Src/buttons.c:46:6:tratatuBotoiak	8	static
+../Core/Src/buttons.c:83:6:B1Sakatu	8	static
+../Core/Src/buttons.c:90:6:B2Mantendu	8	static
+../Core/Src/buttons.c:106:6:B2Sakatu	8	static
+../Core/Src/buttons.c:134:6:B3Sakatu	8	static
