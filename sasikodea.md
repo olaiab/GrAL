@@ -23,6 +23,8 @@ Interrupzioak() //EXTI0_IRQHandler edo BSP
 }
 // Botoia sakatu / mantendu 
 // https://community.st.com/t5/stm32-mcus-products/detecting-long-button-press-on-stm32f3/td-p/353527
+// https://stackoverflow.com/questions/25932299/stm32-rising-and-falling-button-interrupt-detection
+// https://hackmd.io/28DLa48-QDO7-urGPrRLLw
 
 main()
 {

@@ -2,36 +2,41 @@
  * Botoien konfugurazioa
  */
 
-#include "buttons.h"
+#include <botoiak.h>
 #include "main.h"
 #include "lcd.h"
 #include "global.h"
 
 #include "stm32wlxx_nucleo.h"
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == B1_Pin)
+	{
+		if (HAL_GPIO_ReadPin(GPIOA, B1_Pin) == GPIO_PIN_RESET)
+		{
+			noizsakatu = HAL_GetTick();
+		}
+
+		else
+		{
+			noizaskatu = HAL_GetTick();
+
+			if (noizaskatu - noizsakatu < MUGA)
+			{
+				B1FLAG = 2;
+			}
+			else B1FLAG = 1;
+		}
+	}
+}
+
 void BSP_PB_Callback(Button_TypeDef Button)
 {
 	switch (Button)
 	{
-		case BUTTON_SW1:
-			B1FLAG = 1;
-			break;
-
 		case BUTTON_SW2:
-			if (BSP_PB_GetState(Button) == 0) // Sakatuta
-			{
-				noizsakatu = HAL_GetTick();
-				sakatutadago = 1;
-			}
-
-			else
-			{
-				if ((HAL_GetTick() - noizsakatu) < MUGA)
-				{
-					B2FLAG = 2;
-					sakatutadago = 0;
-				}
-			}
+			B2FLAG = 1;
 			break;
 
 		case BUTTON_SW3:
@@ -45,29 +50,19 @@ void BSP_PB_Callback(Button_TypeDef Button)
 
 void tratatuBotoiak(void)
 {
-	if (B1FLAG)
+	if (B1FLAG == 1) // Botoia mantendu
+	{
+		B1FLAG = 0;
+		B1Mantendu();
+	}
+
+	if (B1FLAG == 2) // Botoia sakatu
 	{
 		B1FLAG = 0;
 		B1Sakatu();
 	}
 
-	static uint8_t botoiatratatuta = 0; //igual botoia tratatu ondoren mantenduta jarraitzen du
-	if (sakatutadago && B2FLAG == 0 && !botoiatratatuta)
-	{
-		if ((HAL_GetTick() - noizsakatu) >= MUGA) // Asko sakatu
-		{
-			B2FLAG = 1;
-			botoiatratatuta = 1;
-		}
-	}
-
-	if (B2FLAG == 1) // Botoia mantendu
-	{
-		B2FLAG = 0;
-		B2Mantendu();
-	}
-
-	if (B2FLAG == 2) // Botoia sakatu
+	if (B2FLAG)
 	{
 		B2FLAG = 0;
 		B2Sakatu();
@@ -80,14 +75,14 @@ void tratatuBotoiak(void)
 	}
 }
 
-void B1Sakatu(void)
+void B2Sakatu(void)
 {
 	LCD_Clear();
 	LCD_SetCursor(0,0);
-	LCD_PrintString("B1 sakatuta");
+	LCD_PrintString("B2 sakatuta");
 }
 
-void B2Mantendu(void)
+void B1Mantendu(void)
 {
     switch (egoera)
     {
@@ -103,7 +98,7 @@ void B2Mantendu(void)
     LCD_PrintString(egoerak_str[egoera]);
 }
 
-void B2Sakatu(void)
+void B1Sakatu(void)
 {
     switch (egoera)
     {

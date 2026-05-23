@@ -15,6 +15,7 @@ volatile uint8_t B3FLAG = 0;
 
 volatile uint8_t sakatutadago = 0;
 volatile uint32_t noizsakatu = 0;
+volatile uint32_t noizaskatu = 0;
 
 volatile egoerak egoera = IDLE;
 

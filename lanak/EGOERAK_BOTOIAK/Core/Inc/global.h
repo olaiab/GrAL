@@ -27,11 +27,23 @@ extern const char *egoerak_str[];
 // Botoiak
 extern volatile uint8_t sakatutadago;
 extern volatile uint32_t noizsakatu;
+extern volatile uint32_t noizaskatu;
+
 
 extern volatile uint8_t B1FLAG;
 extern volatile uint8_t B2FLAG;
 extern volatile uint8_t B3FLAG;
 
+// Datuak gordetzeko (pausa -> berrezarri)
+typedef struct{
+    uint32_t denbora_ms;
+    float distantzia_m;
+    float bb_abiadura_km;
+    float split_s;
+    int paladak;
+    uint8_t geldi;
+} SesioDatuak;
 
+extern SesioDatuak sesioa;
 
 #endif /* INC_GLOBAL_H_ */
