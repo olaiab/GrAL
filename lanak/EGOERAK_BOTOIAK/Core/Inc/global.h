@@ -29,7 +29,6 @@ extern volatile uint8_t sakatutadago;
 extern volatile uint32_t noizsakatu;
 extern volatile uint32_t noizaskatu;
 
-
 extern volatile uint8_t B1FLAG;
 extern volatile uint8_t B2FLAG;
 extern volatile uint8_t B3FLAG;
@@ -45,5 +44,8 @@ typedef struct{
 } SesioDatuak;
 
 extern SesioDatuak sesioa;
+
+// Timerrak
+extern volatile uint8_t CRONOFLAG;
 
 #endif /* INC_GLOBAL_H_ */

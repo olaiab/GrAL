@@ -103,7 +103,7 @@ void B1Sakatu(void)
     switch (egoera)
     {
         case IDLE:
-            //entrena_hasi();
+            entrena_init();
             egoera = ENTRENA;
             break;
         case ENTRENA:

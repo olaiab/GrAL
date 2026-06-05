@@ -1,0 +1,7 @@
+../Core/Src/botoiak.c:12:6:HAL_GPIO_EXTI_Callback	4
+../Core/Src/botoiak.c:34:6:BSP_PB_Callback	3
+../Core/Src/botoiak.c:51:6:tratatuBotoiak	5
+../Core/Src/botoiak.c:78:6:B2Sakatu	1
+../Core/Src/botoiak.c:85:6:B1Mantendu	2
+../Core/Src/botoiak.c:101:6:B1Sakatu	5
+../Core/Src/botoiak.c:129:6:B3Sakatu	1

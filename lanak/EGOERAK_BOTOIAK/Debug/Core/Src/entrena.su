@@ -1,0 +1,4 @@
+../Core/Src/entrena.c:11:6:entrena_init	8	static
+../Core/Src/entrena.c:23:6:entrena_pausa	4	static
+../Core/Src/entrena.c:28:6:Entrena	4	static
+../Core/Src/entrena.c:39:6:entrena_gorde	4	static

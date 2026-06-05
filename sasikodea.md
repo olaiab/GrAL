@@ -153,10 +153,12 @@ void entrena_hasi()
 - **GPS**
   - GPS_Init(): main, GPSa hasieratzeko.
   - GPS_Receive(): UART-en etenen kontroladorean, lerro bat jaso bakoitzean tratatzeko.
+  - fs: 10Hz
 
 - **Azelerometroa**
   - AZ_Init(): main, hasieratzeko.
   - AZ_Datua(): erlojuaren etenetan? azelerometroari datuak eskatzeko frekuentzia zehatz batean + datuak tratatu paladak detektatzeko
+  - fs: 50Hz 100Hz 
 
 - **Kronoa**
   - CR_Init()

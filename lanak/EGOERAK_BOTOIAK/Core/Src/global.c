@@ -25,3 +25,7 @@ const char *egoerak_str[] = {
     "PAUSA",
     "GORDE"
 };
+
+volatile uint8_t CRONOFLAG = 0;
+
+SesioDatuak sesioa;
