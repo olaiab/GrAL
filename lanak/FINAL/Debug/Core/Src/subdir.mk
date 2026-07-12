@@ -1,0 +1,60 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../Core/Src/botoiak.c \
+../Core/Src/entrena.c \
+../Core/Src/global.c \
+../Core/Src/lcd.c \
+../Core/Src/main.c \
+../Core/Src/periferikoak.c \
+../Core/Src/stm32wlxx_hal_msp.c \
+../Core/Src/stm32wlxx_it.c \
+../Core/Src/stm32wlxx_nucleo_bus.c \
+../Core/Src/syscalls.c \
+../Core/Src/sysmem.c \
+../Core/Src/system_stm32wlxx.c 
+
+OBJS += \
+./Core/Src/botoiak.o \
+./Core/Src/entrena.o \
+./Core/Src/global.o \
+./Core/Src/lcd.o \
+./Core/Src/main.o \
+./Core/Src/periferikoak.o \
+./Core/Src/stm32wlxx_hal_msp.o \
+./Core/Src/stm32wlxx_it.o \
+./Core/Src/stm32wlxx_nucleo_bus.o \
+./Core/Src/syscalls.o \
+./Core/Src/sysmem.o \
+./Core/Src/system_stm32wlxx.o 
+
+C_DEPS += \
+./Core/Src/botoiak.d \
+./Core/Src/entrena.d \
+./Core/Src/global.d \
+./Core/Src/lcd.d \
+./Core/Src/main.d \
+./Core/Src/periferikoak.d \
+./Core/Src/stm32wlxx_hal_msp.d \
+./Core/Src/stm32wlxx_it.d \
+./Core/Src/stm32wlxx_nucleo_bus.d \
+./Core/Src/syscalls.d \
+./Core/Src/sysmem.d \
+./Core/Src/system_stm32wlxx.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_NUCLEO_64 -DCORE_CM4 -DUSE_HAL_DRIVER -DSTM32WL55xx -c -I../Core/Inc -I../Drivers/STM32WLxx_HAL_Driver/Inc -I../Drivers/STM32WLxx_HAL_Driver/Inc/Legacy -I../Drivers/BSP/STM32WLxx_Nucleo -I../Drivers/CMSIS/Device/ST/STM32WLxx/Include -I../Drivers/CMSIS/Include -I../X-CUBE-MEMS1/Target -I../Drivers/BSP/Components/lis2dw12 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+
+clean: clean-Core-2f-Src
+
+clean-Core-2f-Src:
+	-$(RM) ./Core/Src/botoiak.cyclo ./Core/Src/botoiak.d ./Core/Src/botoiak.o ./Core/Src/botoiak.su ./Core/Src/entrena.cyclo ./Core/Src/entrena.d ./Core/Src/entrena.o ./Core/Src/entrena.su ./Core/Src/global.cyclo ./Core/Src/global.d ./Core/Src/global.o ./Core/Src/global.su ./Core/Src/lcd.cyclo ./Core/Src/lcd.d ./Core/Src/lcd.o ./Core/Src/lcd.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/periferikoak.cyclo ./Core/Src/periferikoak.d ./Core/Src/periferikoak.o ./Core/Src/periferikoak.su ./Core/Src/stm32wlxx_hal_msp.cyclo ./Core/Src/stm32wlxx_hal_msp.d ./Core/Src/stm32wlxx_hal_msp.o ./Core/Src/stm32wlxx_hal_msp.su ./Core/Src/stm32wlxx_it.cyclo ./Core/Src/stm32wlxx_it.d ./Core/Src/stm32wlxx_it.o ./Core/Src/stm32wlxx_it.su ./Core/Src/stm32wlxx_nucleo_bus.cyclo ./Core/Src/stm32wlxx_nucleo_bus.d ./Core/Src/stm32wlxx_nucleo_bus.o ./Core/Src/stm32wlxx_nucleo_bus.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32wlxx.cyclo ./Core/Src/system_stm32wlxx.d ./Core/Src/system_stm32wlxx.o ./Core/Src/system_stm32wlxx.su
+
+.PHONY: clean-Core-2f-Src
+

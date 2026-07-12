@@ -1,0 +1,7 @@
+../Core/Src/buttons.c:12:6:HAL_GPIO_EXTI_Callback	4
+../Core/Src/buttons.c:36:6:BSP_PB_Callback	3
+../Core/Src/buttons.c:70:6:tratatuBotoiak	5
+../Core/Src/buttons.c:111:6:B2Sakatu	1
+../Core/Src/buttons.c:118:6:B1Mantendu	2
+../Core/Src/buttons.c:134:6:B1Sakatu	5
+../Core/Src/buttons.c:162:6:B3Sakatu	1
