@@ -29,6 +29,8 @@ const char *egoerak_str[] = {
 volatile uint8_t CRONOFLAG = 0;
 volatile uint8_t ENTRENAFLAG = 0;
 
+volatile uint32_t tick = 0;
+
 SesioDatuak sesioa;
 
 Paladak paladak;

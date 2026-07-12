@@ -1,5 +1,5 @@
-Core/Src/botoiak.o: ../Core/Src/botoiak.c ../Core/Inc/botoiak.h \
- ../Core/Inc/global.h ../Drivers/BSP/Components/lis2dw12/lis2dw12.h \
+Core/Src/botoiak.o: ../Core/Src/botoiak.c ../Core/Inc/global.h \
+ ../Drivers/BSP/Components/lis2dw12/lis2dw12.h \
  ../Drivers/BSP/Components/lis2dw12/lis2dw12_reg.h \
  ../Core/Inc/stm32wlxx_nucleo_bus.h ../Core/Inc/stm32wlxx_nucleo_conf.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal.h \
@@ -39,12 +39,12 @@ Core/Src/botoiak.o: ../Core/Src/botoiak.c ../Core/Inc/botoiak.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal_uart.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal_uart_ex.h \
  ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h \
- ../Core/Inc/stm32wlxx_nucleo_errno.h \
+ ../Core/Inc/stm32wlxx_nucleo_errno.h ../Core/Inc/main.h \
  ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.h \
  ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_errno.h \
- ../Core/Inc/stm32wlxx_nucleo_conf.h ../Core/Inc/main.h ../Core/Inc/lcd.h \
- ../Core/Inc/global.h
-../Core/Inc/botoiak.h:
+ ../Core/Inc/stm32wlxx_nucleo_conf.h ../Core/Inc/botoiak.h \
+ ../Core/Inc/global.h ../Core/Inc/entrena.h ../Core/Inc/lcd.h \
+ ../Core/Inc/periferikoak.h
 ../Core/Inc/global.h:
 ../Drivers/BSP/Components/lis2dw12/lis2dw12.h:
 ../Drivers/BSP/Components/lis2dw12/lis2dw12_reg.h:
@@ -88,9 +88,12 @@ Core/Src/botoiak.o: ../Core/Src/botoiak.c ../Core/Inc/botoiak.h \
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal_uart_ex.h:
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h:
 ../Core/Inc/stm32wlxx_nucleo_errno.h:
+../Core/Inc/main.h:
 ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.h:
 ../Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_errno.h:
 ../Core/Inc/stm32wlxx_nucleo_conf.h:
-../Core/Inc/main.h:
-../Core/Inc/lcd.h:
+../Core/Inc/botoiak.h:
 ../Core/Inc/global.h:
+../Core/Inc/entrena.h:
+../Core/Inc/lcd.h:
+../Core/Inc/periferikoak.h:

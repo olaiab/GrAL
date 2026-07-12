@@ -2,9 +2,6 @@
  * Botoien konfugurazioa
  */
 
-#include <botoiak.h>
-#include "main.h"
-#include "lcd.h"
 #include "global.h"
 
 #include "stm32wlxx_nucleo.h"

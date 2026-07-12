@@ -1,7 +1,7 @@
-../Core/Src/botoiak.c:12:6:HAL_GPIO_EXTI_Callback	16	static
-../Core/Src/botoiak.c:34:6:BSP_PB_Callback	16	static
-../Core/Src/botoiak.c:51:6:tratatuBotoiak	8	static
-../Core/Src/botoiak.c:78:6:B2Sakatu	8	static
-../Core/Src/botoiak.c:85:6:B1Mantendu	8	static
-../Core/Src/botoiak.c:101:6:B1Sakatu	8	static
-../Core/Src/botoiak.c:129:6:B3Sakatu	8	static
+../Core/Src/botoiak.c:9:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/botoiak.c:31:6:BSP_PB_Callback	16	static
+../Core/Src/botoiak.c:48:6:tratatuBotoiak	8	static
+../Core/Src/botoiak.c:75:6:B2Sakatu	8	static
+../Core/Src/botoiak.c:82:6:B1Mantendu	8	static
+../Core/Src/botoiak.c:98:6:B1Sakatu	8	static
+../Core/Src/botoiak.c:126:6:B3Sakatu	8	static

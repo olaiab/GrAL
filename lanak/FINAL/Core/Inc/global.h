@@ -14,6 +14,12 @@
 #include "stm32wlxx_nucleo_bus.h"
 #include "math.h"
 
+#include "main.h"
+#include "botoiak.h"
+#include "entrena.h"
+#include "lcd.h"
+#include "periferikoak.h"
+
 #define MUGA 2000 // 2seg
 
 // Egoerak
@@ -50,6 +56,7 @@ extern SesioDatuak sesioa;
 // Timerrak
 extern volatile uint8_t CRONOFLAG;
 extern volatile uint8_t ENTRENAFLAG;
+extern volatile uint32_t tick;
 
 // Azel
 extern LIS2DW12_IO_t io_ctx;

@@ -6,7 +6,6 @@
  */
 
 #include "global.h"
-#include "periferikoak.h"
 
 void entrena_init(void)
 {
@@ -14,6 +13,11 @@ void entrena_init(void)
 	sesioa.split_s = 0.0;
 	sesioa.paladak = 0;
 	sesioa.geldi = 0;
+
+	paladak.azkenPalada = 0;
+	paladak.paladaKop = 0;
+	paladak.prest = 1;
+	paladak.val = 0.0;
 	Disp_init();
 	Acc_Init();
 	Entrena();
