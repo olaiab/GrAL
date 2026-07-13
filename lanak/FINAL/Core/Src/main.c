@@ -92,7 +92,7 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
-  MX_I2C2_Init();
+  //MX_I2C2_Init();
   LCD_Init();
   LCD_SetCursor(0, 0);
   LCD_PrintString(egoerak_str[egoera]);
@@ -206,9 +206,9 @@ static void MX_TIM16_Init(void)
 
   /* USER CODE END TIM16_Init 1 */
   htim16.Instance = TIM16;
-  htim16.Init.Prescaler = 479;
+  htim16.Init.Prescaler = 79;
   htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim16.Init.Period = 1999;
+  htim16.Init.Period = 999;
   htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim16.Init.RepetitionCounter = 0;
   htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;

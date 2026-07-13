@@ -25,7 +25,7 @@ void entrena_init(void)
 
 void Entrena(void)
 {
-	LCD_Clear();
+	//LCD_Clear();
 	Crono();
 	Azel();
 	Disp_update();

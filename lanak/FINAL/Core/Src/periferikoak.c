@@ -23,7 +23,7 @@ void Crono(void)
 {
 	if (CRONOFLAG)
 	{
-		sesioa.denbora_ms += 20;
+		sesioa.denbora_ms = tick * 20;
 		CRONOFLAG = 0;
 	}
 }
@@ -40,6 +40,7 @@ void Disp_update()
 
 	int seg = sesioa.denbora_ms / 1000;
 	sprintf(denb, "%02d:%02d", seg / 60, seg % 60);
+	//sprintf(denb, "%d",tick);
 	LCD_SetCursor(0,0);
 	LCD_PrintString(denb);
 
@@ -47,7 +48,7 @@ void Disp_update()
 
 	//sprintf(pal, "%d p/m", sesioa.paladak);
 	//sprintf(pal, "v=%d       ", (int)paladak.val);
-	sprintf(pal, "%d p/m kopurua=%lu", sesioa.paladak, paladak.paladaKop);
+	sprintf(pal, "%d p/m kop=%lu p=%d", sesioa.paladak, paladak.paladaKop, paladak.prest);
 	//sprintf(pal, "%d ds", sesioa.denbora_ms);
 	LCD_SetCursor(0,1);
 	LCD_PrintString(pal);
@@ -88,11 +89,11 @@ void Azel()
 	float z = acc_raw.z;
 
 	// ???
-	static float valorSuavizado = 0.0;
+	static float filtr = 0.0;
 	float alfa = 0.15; // Filtro de suavizado
 
-	static float goiMuga = 150.0; // muga neurtu gabe
-	static float beheMuga = 80.0;
+	static float goiMuga = 1000.0; // muga neurtu gabe
+	static float beheMuga = 700.0;
 	static unsigned long denboraMin = 50; // 1s
 
 	unsigned long orain;
@@ -101,11 +102,19 @@ void Azel()
 
 	float bal = mag - 4132.0; // geldi dagoen balioa kendu
 
-	valorSuavizado = (alfa * bal) + ((1.0 - alfa) * valorSuavizado);
+	filtr = (alfa * bal) + ((1.0 - alfa) * filtr);
 	orain = tick;
 
+	/*
+	char a[20];
+	LCD_SetCursor(0, 0);
+	sprintf(a, " vs=%d      ", (int)valorSuavizado);
+	//LCD_Clear();
+	LCD_PrintString(a);
+	*/
+
 	if (paladak.prest) {
-	    if (valorSuavizado > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
+	    if (filtr > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
 
 	    	if (paladak.azkenPalada != 0) sesioa.paladak = (3000) / (orain - paladak.azkenPalada);
 	        paladak.paladaKop++;
@@ -114,7 +123,7 @@ void Azel()
 	    }
 	}
 	else {
-	    if (valorSuavizado < beheMuga) {
+	    if (filtr < beheMuga) {
 	        paladak.prest = 1;
 	    }
 	}
