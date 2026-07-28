@@ -42,9 +42,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/BSP/Components/lis2dw12/lis2dw12.h \
  ../Drivers/BSP/Components/lis2dw12/lis2dw12_reg.h \
  ../Core/Inc/stm32wlxx_nucleo_bus.h ../Core/Inc/stm32wlxx_nucleo_conf.h \
- ../Core/Inc/stm32wlxx_nucleo_errno.h ../Core/Inc/main.h \
- ../Core/Inc/botoiak.h ../Core/Inc/global.h ../Core/Inc/entrena.h \
- ../Core/Inc/lcd.h ../Core/Inc/periferikoak.h
+ ../Core/Inc/stm32wlxx_nucleo_errno.h ../Core/Inc/entrenamendua.h \
+ ../Core/Inc/main.h ../Core/Inc/botoiak.h ../Core/Inc/global.h \
+ ../Core/Inc/lcd.h
 ../Core/Inc/main.h:
 ../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal.h:
 ../Core/Inc/stm32wlxx_hal_conf.h:
@@ -92,9 +92,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/stm32wlxx_nucleo_bus.h:
 ../Core/Inc/stm32wlxx_nucleo_conf.h:
 ../Core/Inc/stm32wlxx_nucleo_errno.h:
+../Core/Inc/entrenamendua.h:
 ../Core/Inc/main.h:
 ../Core/Inc/botoiak.h:
 ../Core/Inc/global.h:
-../Core/Inc/entrena.h:
 ../Core/Inc/lcd.h:
-../Core/Inc/periferikoak.h:

@@ -92,10 +92,12 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
-  //MX_I2C2_Init();
   LCD_Init();
+
+  LCD_Clear();
   LCD_SetCursor(0, 0);
   LCD_PrintString(egoerak_str[egoera]);
+
   HAL_TIM_Base_Start_IT(&htim16);
 
   /* USER CODE END 2 */
@@ -104,6 +106,8 @@ int main(void)
   BSP_LED_Init(LED_BLUE);
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Init(LED_RED);
+
+  AZ_Init();
 
   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
   BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
@@ -123,24 +127,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  BSP_LED_On(LED_GREEN); // Dena ondo joan dela ziurtatzeko
   while (1)
   {
-	  tratatuBotoiak();
-	  switch (egoera)
-		  {
-			  case ENTRENA:
-				  Crono();
-				  Azel();
-				  Disp_update();
-				  break;
-
-			  case PAUSA:
-				  break;
-
-			  case IDLE:
-			  case GORDE:
-				  break;
-		  }
+	  BTK_Tratatu();
+	  if (egoera == ENTRENA)
+	  {
+		  entrena();
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

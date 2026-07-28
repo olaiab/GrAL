@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00005dfc  08000140  08000140  00001140  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000154  08005f3c  08005f3c  00006f3c  2**2
+  2 .rodata       0000014c  08005f3c  08005f3c  00006f3c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08006090  08006090  00008090  2**0
+  3 .ARM.extab    00000000  08006088  08006088  00008090  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  08006090  08006090  00007090  2**2
+  4 .ARM          00000008  08006088  08006088  00007088  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08006098  08006098  00008090  2**0
+  5 .preinit_array 00000000  08006090  08006090  00008090  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08006098  08006098  00007098  2**2
+  6 .init_array   00000004  08006090  08006090  00007090  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0800609c  0800609c  0000709c  2**2
+  7 .fini_array   00000004  08006094  08006094  00007094  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000090  20000000  080060a0  00008000  2**2
+  8 .data         00000090  20000000  08006098  00008000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000354  20000090  08006130  00008090  2**2
+  9 .bss          00000354  20000090  08006128  00008090  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  200003e4  08006130  000083e4  2**0
+ 10 ._user_heap_stack 00000604  200003e4  08006128  000083e4  2**0
                   ALLOC
  11 .ARM.attributes 0000002a  00000000  00000000  00008090  2**0
                   CONTENTS, READONLY
@@ -633,10 +633,10 @@ void MX_GPIO_Init(void)
  80006bc:	48000800 	.word	0x48000800
 
 080006c0 <Sensor_GetTick>:
-/* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+// Zuzenean HAL_GetTick() jarri ezkero warning-ak agertzen dira
 static int32_t Sensor_GetTick(void)
 {
  80006c0:	b580      	push	{r7, lr}
@@ -684,6 +684,7 @@ int main(void)
  80006e2:	f000 fb41 	bl	8000d68 <MX_USART1_UART_Init>
   /* USER CODE BEGIN 2 */
 
+  // lis2dw12.h fitxategian dauden gauzak
   LIS2DW12_IO_t io_ctx;
 
   io_ctx.Init     = BSP_I2C2_Init;
@@ -799,21 +800,21 @@ int main(void)
     char buf[80];
     int len;
 
-    LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);
+    LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
  800078c:	f107 0354 	add.w	r3, r7, #84	@ 0x54
  8000790:	4619      	mov	r1, r3
  8000792:	4815      	ldr	r0, [pc, #84]	@ (80007e8 <main+0x118>)
  8000794:	f000 fc95 	bl	80010c2 <LIS2DW12_ACC_GetAxesRaw>
 
-    len = snprintf(buf, sizeof(buf), "Acc raw: X=%d Y=%d Z=%d\r\n",
+    len = snprintf(buf, sizeof(buf), "X=%d Y=%d Z=%d\r\n",
                    acc_raw.x, acc_raw.y, acc_raw.z);
  8000798:	f9b7 3054 	ldrsh.w	r3, [r7, #84]	@ 0x54
-    len = snprintf(buf, sizeof(buf), "Acc raw: X=%d Y=%d Z=%d\r\n",
+    len = snprintf(buf, sizeof(buf), "X=%d Y=%d Z=%d\r\n",
  800079c:	4619      	mov	r1, r3
                    acc_raw.x, acc_raw.y, acc_raw.z);
  800079e:	f9b7 3056 	ldrsh.w	r3, [r7, #86]	@ 0x56
  80007a2:	f9b7 2058 	ldrsh.w	r2, [r7, #88]	@ 0x58
-    len = snprintf(buf, sizeof(buf), "Acc raw: X=%d Y=%d Z=%d\r\n",
+    len = snprintf(buf, sizeof(buf), "X=%d Y=%d Z=%d\r\n",
  80007a6:	1d38      	adds	r0, r7, #4
  80007a8:	9201      	str	r2, [sp, #4]
  80007aa:	9300      	str	r3, [sp, #0]
@@ -2311,7 +2312,7 @@ LoopForever:
   ldr r1, =_edata
  8000ecc:	20000090 	.word	0x20000090
   ldr r2, =_sidata
- 8000ed0:	080060a0 	.word	0x080060a0
+ 8000ed0:	08006098 	.word	0x08006098
   ldr r2, =_sbss
  8000ed4:	20000090 	.word	0x20000090
   ldr r4, =_ebss
@@ -4293,7 +4294,7 @@ int32_t BSP_LED_Init(Led_TypeDef Led)
  8001a12:	3720      	adds	r7, #32
  8001a14:	46bd      	mov	sp, r7
  8001a16:	bd80      	pop	{r7, pc}
- 8001a18:	08006014 	.word	0x08006014
+ 8001a18:	0800600c 	.word	0x0800600c
  8001a1c:	20000004 	.word	0x20000004
 
 08001a20 <BSP_PB_Init>:
@@ -4439,12 +4440,12 @@ int32_t BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
  8001b0a:	3720      	adds	r7, #32
  8001b0c:	46bd      	mov	sp, r7
  8001b0e:	bd80      	pop	{r7, pc}
- 8001b10:	0800601c 	.word	0x0800601c
+ 8001b10:	08006014 	.word	0x08006014
  8001b14:	20000010 	.word	0x20000010
  8001b18:	200001ec 	.word	0x200001ec
- 8001b1c:	08006028 	.word	0x08006028
+ 8001b1c:	08006020 	.word	0x08006020
  8001b20:	20000020 	.word	0x20000020
- 8001b24:	08006024 	.word	0x08006024
+ 8001b24:	0800601c 	.word	0x0800601c
  8001b28:	2000002c 	.word	0x2000002c
 
 08001b2c <BSP_PB_IRQHandler>:
@@ -11685,7 +11686,7 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8004282:	371c      	adds	r7, #28
  8004284:	46bd      	mov	sp, r7
  8004286:	bd90      	pop	{r4, r7, pc}
- 8004288:	08005fd4 	.word	0x08005fd4
+ 8004288:	08005fcc 	.word	0x08005fcc
  800428c:	00f42400 	.word	0x00f42400
  8004290:	01e84800 	.word	0x01e84800
 
@@ -11712,7 +11713,7 @@ uint32_t HAL_RCC_GetHCLKFreq(void)
 }
  80042b4:	4618      	mov	r0, r3
  80042b6:	bd98      	pop	{r3, r4, r7, pc}
- 80042b8:	08005f74 	.word	0x08005f74
+ 80042b8:	08005f6c 	.word	0x08005f6c
 
 080042bc <HAL_RCC_GetPCLK1Freq>:
 /**
@@ -11736,7 +11737,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
 }
  80042d8:	4618      	mov	r0, r3
  80042da:	bd98      	pop	{r3, r4, r7, pc}
- 80042dc:	08005fb4 	.word	0x08005fb4
+ 80042dc:	08005fac 	.word	0x08005fac
 
 080042e0 <HAL_RCC_GetPCLK2Freq>:
 /**
@@ -11760,7 +11761,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
 }
  80042fc:	4618      	mov	r0, r3
  80042fe:	bd98      	pop	{r3, r4, r7, pc}
- 8004300:	08005fb4 	.word	0x08005fb4
+ 8004300:	08005fac 	.word	0x08005fac
 
 08004304 <RCC_SetFlashLatencyFromMSIRange>:
             voltage range.
@@ -11811,8 +11812,8 @@ static HAL_StatusTypeDef RCC_SetFlashLatencyFromMSIRange(uint32_t MSI_Range)
  8004352:	3714      	adds	r7, #20
  8004354:	46bd      	mov	sp, r7
  8004356:	bd90      	pop	{r4, r7, pc}
- 8004358:	08005fd4 	.word	0x08005fd4
- 800435c:	08005f74 	.word	0x08005f74
+ 8004358:	08005fcc 	.word	0x08005fcc
+ 800435c:	08005f6c 	.word	0x08005f6c
  8004360:	431bde83 	.word	0x431bde83
 
 08004364 <RCC_SetFlashLatency>:
@@ -11983,9 +11984,9 @@ static HAL_StatusTypeDef RCC_SetFlashLatency(uint32_t Flash_ClkSrcFreq, uint32_t
  8004452:	46bd      	mov	sp, r7
  8004454:	bd80      	pop	{r7, pc}
  8004456:	bf00      	nop
- 8004458:	08005f58 	.word	0x08005f58
- 800445c:	08005f60 	.word	0x08005f60
- 8004460:	08005f68 	.word	0x08005f68
+ 8004458:	08005f50 	.word	0x08005f50
+ 800445c:	08005f58 	.word	0x08005f58
+ 8004460:	08005f60 	.word	0x08005f60
  8004464:	58004000 	.word	0x58004000
 
 08004468 <LL_RCC_LSE_IsReady>:
@@ -13417,7 +13418,7 @@ HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
  8004d20:	40013800 	.word	0x40013800
  8004d24:	40004400 	.word	0x40004400
  8004d28:	00f42400 	.word	0x00f42400
- 8004d2c:	08006034 	.word	0x08006034
+ 8004d2c:	0800602c 	.word	0x0800602c
       }
       else
       {
@@ -13756,7 +13757,7 @@ HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
  8004f70:	46bd      	mov	sp, r7
  8004f72:	e8bd 8fb0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, sl, fp, pc}
  8004f76:	bf00      	nop
- 8004f78:	08006034 	.word	0x08006034
+ 8004f78:	0800602c 	.word	0x0800602c
  8004f7c:	00f42400 	.word	0x00f42400
 
 08004f80 <UART_AdvFeatureConfig>:
@@ -14859,8 +14860,8 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  80055ae:	46bd      	mov	sp, r7
  80055b0:	bc80      	pop	{r7}
  80055b2:	4770      	bx	lr
- 80055b4:	0800604c 	.word	0x0800604c
- 80055b8:	08006054 	.word	0x08006054
+ 80055b4:	08006044 	.word	0x08006044
+ 80055b8:	0800604c 	.word	0x0800604c
 
 080055bc <sniprintf>:
  80055bc:	b40c      	push	{r2, r3}
@@ -14950,10 +14951,10 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  8005676:	4798      	blx	r3
  8005678:	3601      	adds	r6, #1
  800567a:	e7f2      	b.n	8005662 <__libc_init_array+0x1e>
- 800567c:	08006098 	.word	0x08006098
- 8005680:	08006098 	.word	0x08006098
- 8005684:	08006098 	.word	0x08006098
- 8005688:	0800609c 	.word	0x0800609c
+ 800567c:	08006090 	.word	0x08006090
+ 8005680:	08006090 	.word	0x08006090
+ 8005684:	08006090 	.word	0x08006090
+ 8005688:	08006094 	.word	0x08006094
 
 0800568c <__retarget_lock_acquire_recursive>:
  800568c:	4770      	bx	lr
@@ -15459,9 +15460,9 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  8005b14:	4638      	mov	r0, r7
  8005b16:	f000 f879 	bl	8005c0c <_printf_i>
  8005b1a:	e7ed      	b.n	8005af8 <_svfiprintf_r+0x1c0>
- 8005b1c:	0800605c 	.word	0x0800605c
- 8005b20:	08006062 	.word	0x08006062
- 8005b24:	08006066 	.word	0x08006066
+ 8005b1c:	08006054 	.word	0x08006054
+ 8005b20:	0800605a 	.word	0x0800605a
+ 8005b24:	0800605e 	.word	0x0800605e
  8005b28:	00000000 	.word	0x00000000
  8005b2c:	08005881 	.word	0x08005881
 
@@ -15792,8 +15793,8 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
  8005e38:	2500      	movs	r5, #0
  8005e3a:	f104 0619 	add.w	r6, r4, #25
  8005e3e:	e7f5      	b.n	8005e2c <_printf_i+0x220>
- 8005e40:	0800606d 	.word	0x0800606d
- 8005e44:	0800607e 	.word	0x0800607e
+ 8005e40:	08006065 	.word	0x08006065
+ 8005e44:	08006076 	.word	0x08006076
 
 08005e48 <memmove>:
  8005e48:	4288      	cmp	r0, r1

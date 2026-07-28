@@ -12,49 +12,73 @@
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Instance == TIM16)
-	    {
-	        CRONOFLAG = 1;
-	        tick++;
-	    }
-}
-
-void Crono(void)
-{
-	if (CRONOFLAG)
+	if (egoera == ENTRENA)
 	{
-		sesioa.denbora_ms = tick * 20;
-		CRONOFLAG = 0;
+		if (htim->Instance == TIM16)
+		{
+			TICKFLAG = 1;
+			tick++;
+			tKont++;
+			if (tKont == 50)
+			{
+				SEGFLAG = 1;
+				tKont = 0;
+			}
+		}
 	}
 }
 
-void Disp_init(void)
+void ENT_Init(void)
 {
-	LCD_Init();
+	tick = 0;
+	tKont = 0;
+	TICKFLAG = 0;
+	SEGFLAG = 0;
+
+	sesioa.denboraMs = 0;
+	sesioa.paladakMin = 0.0;
+	sesioa.paladaKop = 0;
+
+	paladak.azkenPalada = 0;
+	paladak.prest = 1;
+	LCD_Clear();
 	LCD_SetCursor(0,0);
+	entrena();
 }
 
-void Disp_update()
+void entrena(void)
+{
+	if (TICKFLAG)
+	{
+		AZ_Tratatu();
+		sesioa.denboraMs = tick * 20;
+		TICKFLAG = 0;
+	}
+	if (SEGFLAG)
+	{
+		LCD_Eguneratu();
+		SEGFLAG = 0;
+	}
+}
+
+void LCD_Eguneratu()
 {
 	char denb[16]; // "00:00"
 
-	int seg = sesioa.denbora_ms / 1000;
+	int seg = sesioa.denboraMs / 1000;
 	sprintf(denb, "%02d:%02d", seg / 60, seg % 60);
 	//sprintf(denb, "%d",tick);
 	LCD_SetCursor(0,0);
 	LCD_PrintString(denb);
 
-	char pal[16]; // "XX p/m"
+	char pal[16]; // "XX.X p/m"
 
-	//sprintf(pal, "%d p/m", sesioa.paladak);
-	//sprintf(pal, "v=%d       ", (int)paladak.val);
-	sprintf(pal, "%d p/m kop=%lu p=%d", sesioa.paladak, paladak.paladaKop, paladak.prest);
-	//sprintf(pal, "%d ds", sesioa.denbora_ms);
+	sprintf(pal, "%.1f p/m K=%lu", sesioa.paladakMin, sesioa.paladaKop);
 	LCD_SetCursor(0,1);
 	LCD_PrintString(pal);
 }
 
-void Acc_Init()
+void AZ_Init()
 {
 	io_ctx.Init     = BSP_I2C2_Init;
 	io_ctx.DeInit   = BSP_I2C2_DeInit;
@@ -66,18 +90,21 @@ void Acc_Init()
 
 	if (LIS2DW12_RegisterBusIO(&Acc, &io_ctx) != LIS2DW12_OK)
 	{
+		BSP_LED_On(LED_BLUE);
 		Error_Handler();
 	}
 
+
 	if (LIS2DW12_Init(&Acc) != LIS2DW12_OK)
 	{
+		//BSP_LED_On(LED_RED);
 		Error_Handler();
 	}
 
 	LIS2DW12_ACC_Enable(&Acc);
 }
 
-void Azel()
+void AZ_Tratatu()
 {
 	//	MAHAIAN GELDIRIK 4132 = 1G
 	LIS2DW12_AxesRaw_t acc_raw;
@@ -105,19 +132,11 @@ void Azel()
 	filtr = (alfa * bal) + ((1.0 - alfa) * filtr);
 	orain = tick;
 
-	/*
-	char a[20];
-	LCD_SetCursor(0, 0);
-	sprintf(a, " vs=%d      ", (int)valorSuavizado);
-	//LCD_Clear();
-	LCD_PrintString(a);
-	*/
-
 	if (paladak.prest) {
 	    if (filtr > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
 
-	    	if (paladak.azkenPalada != 0) sesioa.paladak = (3000) / (orain - paladak.azkenPalada);
-	        paladak.paladaKop++;
+	    	if (paladak.azkenPalada != 0) sesioa.paladakMin = (3000.0f) / (orain - paladak.azkenPalada);
+	        sesioa.paladaKop++;
 	        paladak.azkenPalada = orain;
 	        paladak.prest = 0;
 	    }

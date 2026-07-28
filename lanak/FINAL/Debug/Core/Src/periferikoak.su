@@ -1,6 +1,0 @@
-../Core/Src/periferikoak.c:13:6:HAL_TIM_PeriodElapsedCallback	16	static
-../Core/Src/periferikoak.c:22:6:Crono	4	static
-../Core/Src/periferikoak.c:31:6:Disp_init	8	static
-../Core/Src/periferikoak.c:37:6:Disp_update	64	static
-../Core/Src/periferikoak.c:57:6:Acc_Init	8	static
-../Core/Src/periferikoak.c:80:6:Azel	64	static

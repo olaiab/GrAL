@@ -63,7 +63,7 @@ main-build: EGOERAK_BOTOIAK.elf secondary-outputs
 
 # Tool invocations
 EGOERAK_BOTOIAK.elf EGOERAK_BOTOIAK.map: $(OBJS) $(USER_OBJS) /home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "EGOERAK_BOTOIAK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="EGOERAK_BOTOIAK.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "EGOERAK_BOTOIAK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="EGOERAK_BOTOIAK.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

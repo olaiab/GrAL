@@ -321,7 +321,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wlxx_hal.h"
-
 /** @addtogroup STM32WLxx_HAL_Driver
   * @{
   */
@@ -2706,6 +2705,7 @@ HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress,
     {
       /* Process Unlocked */
       __HAL_UNLOCK(hi2c);
+
       return HAL_ERROR;
     }
 

@@ -11,11 +11,11 @@
 #include "global.h"
 #include "stm32wlxx_nucleo.h"
 
-void tratatuBotoiak(void);
-void B1Sakatu(void);
-void B2Sakatu(void);
-void B3Sakatu(void);
+void BTK_Tratatu(void);
+void B1_Sakatu(void);
+void B2_Sakatu(void);
+void B3_Sakatu(void);
 
-void B1Mantendu(void);
+void B1_Mantendu(void);
 
 #endif /* INC_BOTOIAK_H_ */

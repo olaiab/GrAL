@@ -1,0 +1,6 @@
+../Core/Src/entrenamendua.c:13:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/entrenamendua.c:31:6:ENT_Init	8	static
+../Core/Src/entrenamendua.c:49:6:entrena	8	static
+../Core/Src/entrenamendua.c:64:6:LCD_Eguneratu	64	static
+../Core/Src/entrenamendua.c:84:6:AZ_Init	8	static
+../Core/Src/entrenamendua.c:110:6:AZ_Tratatu	64	static

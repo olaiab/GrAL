@@ -18,7 +18,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "lis2dw12.h"
-
+#include "global.h"
 /** @addtogroup BSP BSP
   * @{
   */
@@ -148,6 +148,7 @@ int32_t LIS2DW12_Init(LIS2DW12_Object_t *pObj)
   access with a serial interface. */
   if (lis2dw12_auto_increment_set(&(pObj->Ctx), PROPERTY_ENABLE) != LIS2DW12_OK)
   {
+	BSP_LED_On(LED_RED);
     return LIS2DW12_ERROR;
   }
 
