@@ -115,9 +115,9 @@ void AZ_Tratatu()
 	float y = acc_raw.y;
 	float z = acc_raw.z;
 
-	// ???
 	static float filtr = 0.0;
-	float alfa = 0.15; // Filtro de suavizado
+	static float batazbeste = 0.0;
+	float alfa = 0.15;
 
 	static float goiMuga = 1000.0; // muga neurtu gabe
 	static float beheMuga = 700.0;
@@ -129,7 +129,25 @@ void AZ_Tratatu()
 
 	float bal = mag - 4132.0; // geldi dagoen balioa kendu
 
+	// y(k) = alfa*x[k]+(1-alfa)*y[k-1]
+	// Filtro LTI pasa-baja (PDSI) (5. gaia)
 	filtr = (alfa * bal) + ((1.0 - alfa) * filtr);
+
+	if (batazbeste == 0.0f)
+	{
+	    batazbeste = fabsf(filtr);
+	}
+	else
+	{
+	    batazbeste = 0.98f * batazbeste + 0.02f * fabsf(filtr);
+	}
+
+	// muga dinamikoak
+	batazbeste = 0.98f * batazbeste + 0.02f * fabsf(filtr);
+
+	goiMuga  = 1.4f * batazbeste;
+	beheMuga = 1.0f * batazbeste;
+
 	orain = tick;
 
 	if (paladak.prest) {

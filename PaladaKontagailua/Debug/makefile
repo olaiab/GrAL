@@ -36,34 +36,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := EGOERAK_BOTOIAK
+BUILD_ARTIFACT_NAME := PaladaKontagailua
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-EGOERAK_BOTOIAK.elf \
+PaladaKontagailua.elf \
 
 MAP_FILES += \
-EGOERAK_BOTOIAK.map \
+PaladaKontagailua.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-EGOERAK_BOTOIAK.list \
+PaladaKontagailua.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: EGOERAK_BOTOIAK.elf secondary-outputs
+main-build: PaladaKontagailua.elf secondary-outputs
 
 # Tool invocations
-EGOERAK_BOTOIAK.elf EGOERAK_BOTOIAK.map: $(OBJS) $(USER_OBJS) /home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "EGOERAK_BOTOIAK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="EGOERAK_BOTOIAK.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+PaladaKontagailua.elf PaladaKontagailua.map: $(OBJS) $(USER_OBJS) /home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "PaladaKontagailua.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/olaia/Escritorio/GrAL/GitHub/lanak/FINAL/STM32WL55JCIX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PaladaKontagailua.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -72,14 +72,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-EGOERAK_BOTOIAK.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "EGOERAK_BOTOIAK.list"
+PaladaKontagailua.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "PaladaKontagailua.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) EGOERAK_BOTOIAK.elf EGOERAK_BOTOIAK.list EGOERAK_BOTOIAK.map default.size.stdout
+	-$(RM) PaladaKontagailua.elf PaladaKontagailua.list PaladaKontagailua.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
