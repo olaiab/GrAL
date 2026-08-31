@@ -111,6 +111,7 @@ void AZ_Tratatu()
 
 	LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
 
+ 	float INDAR_MIN = 200.0f;
 	float x = acc_raw.x;
 	float y = acc_raw.y;
 	float z = acc_raw.z;
@@ -142,17 +143,13 @@ void AZ_Tratatu()
 	    batazbeste = 0.98f * batazbeste + 0.02f * fabsf(filtr);
 	}
 
-	// muga dinamikoak
-	batazbeste = 0.98f * batazbeste + 0.02f * fabsf(filtr);
-
 	goiMuga  = 1.4f * batazbeste;
 	beheMuga = 1.0f * batazbeste;
 
 	orain = tick;
 
 	if (paladak.prest) {
-	    if (filtr > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
-
+	    if (filtr > INDAR_MIN && filtr > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
 	    	if (paladak.azkenPalada != 0) sesioa.paladakMin = (3000.0f) / (orain - paladak.azkenPalada);
 	        sesioa.paladaKop++;
 	        paladak.azkenPalada = orain;

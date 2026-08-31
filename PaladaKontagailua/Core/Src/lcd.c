@@ -2,7 +2,6 @@
 #include "lcd.h"
 #include <string.h>
 
-// EN alto
 static void lcd_pulse_enable(void)
 {
 	HAL_GPIO_WritePin(LCD_EN_PORT, LCD_EN_PIN, GPIO_PIN_SET); //Enable
