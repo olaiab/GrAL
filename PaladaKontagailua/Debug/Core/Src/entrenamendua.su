@@ -3,4 +3,4 @@
 ../Core/Src/entrenamendua.c:54:6:entrena	8	static
 ../Core/Src/entrenamendua.c:69:6:LCD_Eguneratu	64	static
 ../Core/Src/entrenamendua.c:86:6:AZ_Init	8	static
-../Core/Src/entrenamendua.c:112:6:AZ_Tratatu	144	static
+../Core/Src/entrenamendua.c:112:6:AZ_Tratatu	232	static

@@ -116,7 +116,7 @@ void AZ_Tratatu()
 
 	LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
 
- 	float INDAR_MIN = 500.0f;
+ 	float INDAR_MIN = 1000.0f;
 	float x = acc_raw.x;
 	float y = acc_raw.y;
 	float z = acc_raw.z;
@@ -147,22 +147,26 @@ void AZ_Tratatu()
 
 	orain = tick;
 
+	if (paladak.prest) {
+		    if (paladak.filtr > INDAR_MIN && paladak.filtr > paladak.goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
+		    	if (paladak.azkenPalada != 0) sesioa.paladakMin = (3000.0f) / (orain - paladak.azkenPalada);
+		        sesioa.paladaKop++;
+		        paladak.azkenPalada = orain;
+		        paladak.prest = 0;
+		    }
+		}
+		else {
+		    if (paladak.filtr < paladak.beheMuga) {
+		        paladak.prest = 1;
+		    }
+		}
+
 	/*
-	char msg[64];
-	int len = snprintf(msg, sizeof(msg), "F = %.2f\r\n", paladak.batazbeste);
+	// tick, bal, paladak.filtr, sesioa.paladaKop, paladak.goiMuga, paladak.beheMuga
+	char msg[96];
+	int len = snprintf(msg, sizeof(msg), "%lu,%.2f,%.2f,%lu,%.2f,%.2f\r\n",
+	                   tick, bal, paladak.filtr, sesioa.paladaKop,
+	                   paladak.goiMuga, paladak.beheMuga);
 	HAL_UART_Transmit(&huart2, (uint8_t*)msg, len, 100);
 	*/
-	if (paladak.prest) {
-	    if (paladak.filtr > INDAR_MIN && paladak.filtr > paladak.goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
-	    	if (paladak.azkenPalada != 0) sesioa.paladakMin = (3000.0f) / (orain - paladak.azkenPalada);
-	        sesioa.paladaKop++;
-	        paladak.azkenPalada = orain;
-	        paladak.prest = 0;
-	    }
-	}
-	else {
-	    if (paladak.filtr < paladak.beheMuga) {
-	        paladak.prest = 1;
-	    }
-	}
 }
