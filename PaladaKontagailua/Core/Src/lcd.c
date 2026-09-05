@@ -95,13 +95,3 @@ void LCD_PrintString(const char *str)
         lcd_data((uint8_t)*str++);
 }
 
-//Laguntzarekin eginda
-void LCD_CreateChar(uint8_t slot, const uint8_t bitmap[8])
-{
-    slot &= 0x07;                      // 0-7 bitarteko balioak direla ziurtatzeko
-    lcd_cmd(0x40 | (slot << 3));       // set CGRAM address
-    for (uint8_t i = 0; i < 8; i++)
-        lcd_data(bitmap[i]);
-    lcd_cmd(0x80);                     // return to DDRAM address 0
-}
-

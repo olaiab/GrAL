@@ -63,8 +63,14 @@ extern LIS2DW12_Object_t Acc;
 typedef struct{
 	uint32_t azkenPalada;
 	int prest;
+	float filtr;
+	float batazbeste;
+	float goiMuga;
+	float beheMuga;
 }Paladak;
 
 extern Paladak paladak;
+
+extern UART_HandleTypeDef huart2;
 
 #endif /* INC_GLOBAL_H_ */

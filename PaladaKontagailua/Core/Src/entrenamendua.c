@@ -41,6 +41,11 @@ void ENT_Init(void)
 
 	paladak.azkenPalada = 0;
 	paladak.prest = 1;
+	paladak.filtr = 0.0;
+	paladak.batazbeste = 0.0;
+	paladak.goiMuga = 1000.0; // muga neurtu gabe
+	paladak.beheMuga = 400.0;
+
 	LCD_Clear();
 	LCD_SetCursor(0,0);
 	entrena();
@@ -73,7 +78,7 @@ void LCD_Eguneratu()
 
 	char pal[16]; // "XX.X p/m"
 
-	sprintf(pal, "%.1f p/m K=%lu", sesioa.paladakMin, sesioa.paladaKop);
+	sprintf(pal, "%04.1f p/m K=%lu", sesioa.paladakMin, sesioa.paladaKop);
 	LCD_SetCursor(0,1);
 	LCD_PrintString(pal);
 }
@@ -111,45 +116,44 @@ void AZ_Tratatu()
 
 	LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
 
- 	float INDAR_MIN = 200.0f;
+ 	float INDAR_MIN = 500.0f;
 	float x = acc_raw.x;
 	float y = acc_raw.y;
 	float z = acc_raw.z;
 
-	static float filtr = 0.0;
-	static float batazbeste = 0.0;
 	float alfa = 0.15;
-
-	static float goiMuga = 1000.0; // muga neurtu gabe
-	static float beheMuga = 700.0;
-	static unsigned long denboraMin = 50; // 1s
-
+	unsigned long denboraMin = 50; // 1s
 	unsigned long orain;
 
 	float mag = sqrt((float)x*(float)x + (float)y*(float)y + (float)z*(float)z); //magnitudea kalkulatu
 
-	float bal = mag - 4132.0; // geldi dagoen balioa kendu
+	float bal = mag - 4152.0; // geldi dagoen balioa kendu
 
 	// y(k) = alfa*x[k]+(1-alfa)*y[k-1]
 	// Filtro LTI pasa-baja (PDSI) (5. gaia)
-	filtr = (alfa * bal) + ((1.0 - alfa) * filtr);
+	paladak.filtr = (alfa * bal) + ((1.0 - alfa) * paladak.filtr);
 
-	if (batazbeste == 0.0f)
+	if (paladak.batazbeste == 0.0f)
 	{
-	    batazbeste = fabsf(filtr);
+		paladak.batazbeste = fabsf(paladak.filtr);
 	}
 	else
 	{
-	    batazbeste = 0.98f * batazbeste + 0.02f * fabsf(filtr);
+		paladak.batazbeste = 0.98f * paladak.batazbeste + 0.02f * fabsf(paladak.filtr);
 	}
 
-	goiMuga  = 1.4f * batazbeste;
-	beheMuga = 1.0f * batazbeste;
+	paladak.goiMuga  = 1.4f * paladak.batazbeste;
+	paladak.beheMuga = 1.0f * paladak.batazbeste;
 
 	orain = tick;
 
+	/*
+	char msg[64];
+	int len = snprintf(msg, sizeof(msg), "F = %.2f\r\n", paladak.batazbeste);
+	HAL_UART_Transmit(&huart2, (uint8_t*)msg, len, 100);
+	*/
 	if (paladak.prest) {
-	    if (filtr > INDAR_MIN && filtr > goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
+	    if (paladak.filtr > INDAR_MIN && paladak.filtr > paladak.goiMuga && (orain - paladak.azkenPalada) > denboraMin) {
 	    	if (paladak.azkenPalada != 0) sesioa.paladakMin = (3000.0f) / (orain - paladak.azkenPalada);
 	        sesioa.paladaKop++;
 	        paladak.azkenPalada = orain;
@@ -157,7 +161,7 @@ void AZ_Tratatu()
 	    }
 	}
 	else {
-	    if (filtr < beheMuga) {
+	    if (paladak.filtr < paladak.beheMuga) {
 	        paladak.prest = 1;
 	    }
 	}

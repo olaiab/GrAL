@@ -1,9 +1,8 @@
-../Core/Src/lcd.c:6:13:lcd_pulse_enable	1
-../Core/Src/lcd.c:14:13:lcd_send_halfbyte	5
-../Core/Src/lcd.c:34:13:lcd_send_byte	2
-../Core/Src/lcd.c:47:6:LCD_Init	1
-../Core/Src/lcd.c:71:6:LCD_Clear	1
-../Core/Src/lcd.c:82:6:LCD_SetCursor	1
-../Core/Src/lcd.c:88:6:LCD_PrintChar	1
-../Core/Src/lcd.c:93:6:LCD_PrintString	2
-../Core/Src/lcd.c:100:6:LCD_CreateChar	2
+../Core/Src/lcd.c:5:13:lcd_pulse_enable	1
+../Core/Src/lcd.c:13:13:lcd_send_halfbyte	5
+../Core/Src/lcd.c:33:13:lcd_send_byte	2
+../Core/Src/lcd.c:46:6:LCD_Init	1
+../Core/Src/lcd.c:70:6:LCD_Clear	1
+../Core/Src/lcd.c:81:6:LCD_SetCursor	1
+../Core/Src/lcd.c:87:6:LCD_PrintChar	1
+../Core/Src/lcd.c:92:6:LCD_PrintString	2

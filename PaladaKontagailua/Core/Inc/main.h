@@ -30,7 +30,6 @@ extern "C" {
 #include "stm32wlxx_hal.h"
 
 #include "stm32wlxx_nucleo.h"
-#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -60,10 +59,20 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define I2C_Pin GPIO_PIN_12
+#define I2C_GPIO_Port GPIOA
 #define RCC_OSC32_IN_Pin GPIO_PIN_14
 #define RCC_OSC32_IN_GPIO_Port GPIOC
+#define I2CA11_Pin GPIO_PIN_11
+#define I2CA11_GPIO_Port GPIOA
+#define LCD_Pin GPIO_PIN_3
+#define LCD_GPIO_Port GPIOB
 #define RCC_OSC32_OUT_Pin GPIO_PIN_15
 #define RCC_OSC32_OUT_GPIO_Port GPIOC
+#define LCDB5_Pin GPIO_PIN_5
+#define LCDB5_GPIO_Port GPIOB
+#define LCDB8_Pin GPIO_PIN_8
+#define LCDB8_GPIO_Port GPIOB
 #define FE_CTRL3_Pin GPIO_PIN_3
 #define FE_CTRL3_GPIO_Port GPIOC
 #define B1_Pin GPIO_PIN_0
@@ -71,8 +80,14 @@ void Error_Handler(void);
 #define B1_EXTI_IRQn EXTI0_IRQn
 #define FE_CTRL2_Pin GPIO_PIN_5
 #define FE_CTRL2_GPIO_Port GPIOC
+#define LCDB12_Pin GPIO_PIN_12
+#define LCDB12_GPIO_Port GPIOB
+#define LCDC1_Pin GPIO_PIN_1
+#define LCDC1_GPIO_Port GPIOC
 #define FE_CTRL1_Pin GPIO_PIN_4
 #define FE_CTRL1_GPIO_Port GPIOC
+#define LCDB10_Pin GPIO_PIN_10
+#define LCDB10_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

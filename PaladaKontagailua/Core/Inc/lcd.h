@@ -27,6 +27,5 @@ void LCD_Clear(void);
 void LCD_SetCursor(uint8_t col, uint8_t row);
 void LCD_PrintString(const char *str);
 void LCD_PrintChar(char c);
-void LCD_CreateChar(uint8_t slot, const uint8_t bitmap[8]);
 
 #endif /* LCD_H */

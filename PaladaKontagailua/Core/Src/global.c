@@ -35,5 +35,7 @@ SesioDatuak sesioa;
 
 Paladak paladak;
 
+UART_HandleTypeDef huart2;
+
 LIS2DW12_IO_t io_ctx;
 LIS2DW12_Object_t Acc;
