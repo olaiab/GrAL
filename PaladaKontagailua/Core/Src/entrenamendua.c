@@ -43,8 +43,8 @@ void ENT_Init(void)
 	paladak.prest = 1;
 	paladak.filtr = 0.0;
 	paladak.batazbeste = 0.0;
-	paladak.goiMuga = 1000.0; // muga neurtu gabe
-	paladak.beheMuga = 400.0;
+	paladak.goiMuga = 200.0; // 0,2g
+	paladak.beheMuga = 100.0; // 0,4g
 
 	LCD_Clear();
 	LCD_SetCursor(0,0);
@@ -111,14 +111,14 @@ void AZ_Init()
 void AZ_Tratatu()
 {
 	//	MAHAIAN GELDIRIK 4152 = 1G
-	LIS2DW12_AxesRaw_t acc_raw;
+	LIS2DW12_Axes_t acc;
 
-	LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
+	LIS2DW12_ACC_GetAxes(&Acc, &acc);	//lis2dw12.c
 
- 	float INDAR_MIN = 1000.0f;
-	float x = acc_raw.x;
-	float y = acc_raw.y;
-	float z = acc_raw.z;
+ 	float INDAR_MIN = 200.0f;
+	float x = acc.x;
+	float y = acc.y;
+	float z = acc.z;
 
 	float alfa = 0.15;
 	unsigned long denboraMin = 50; // 1s
@@ -126,7 +126,7 @@ void AZ_Tratatu()
 
 	float mag = sqrt((float)x*(float)x + (float)y*(float)y + (float)z*(float)z); //magnitudea kalkulatu
 
-	float bal = mag - 4152.0; // geldi dagoen balioa kendu
+	float bal = mag - 1000.0f; // geldi dagoen balioa kendu
 
 	// y(k) = alfa*x[k]+(1-alfa)*y[k-1]
 	// Filtro LTI pasa-baja (PDSI) (5. gaia)

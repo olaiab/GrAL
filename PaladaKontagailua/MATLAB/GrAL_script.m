@@ -10,18 +10,15 @@ BeheMuga        = datuak(:, 6);
 diff_kont = [0; diff(paladaKop)];
 gailurrak = find(diff_kont > 0);
 gailurX = Denbora_sec(gailurrak);
-gailurY = Seinalea(gailurrak);
+gailurY = Seinalea(gailurrak)/1000;
 
-% Grafikoa sortu
-figure('Name', 'Paladen detekzioa goi-muga eta behe-mugarekin', 'NumberTitle', 'off');
+figure('Name', 'Paladen detekzioa eta mugak', 'NumberTitle', 'off');
 hold on;
 
-plot(Denbora_sec, Seinalea, 'b-', 'LineWidth', 1.8);
-plot(Denbora_sec, IragaziGabe, ':', 'Color', [0.5, 0.5, 0.5], 'LineWidth', 1.8);
-plot(Denbora_sec, GoiMuga, 'g--', 'LineWidth', 1.2);
-plot(Denbora_sec, BeheMuga, 'm--', 'LineWidth', 1.2);
-
-yline(1000, 'k:', 'LineWidth', 1.2);
+plot(Denbora_sec, Seinalea/1000, 'b-', 'LineWidth', 1.8);
+plot(Denbora_sec, GoiMuga/1000, 'g--', 'LineWidth', 1.2);
+plot(Denbora_sec, BeheMuga/1000, 'm--', 'LineWidth', 1.2);
+yline(0.2, 'k:', 'LineWidth', 1.2);
 
 if ~isempty(gailurrak)
     plot(gailurX, gailurY, 'r^', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
@@ -29,7 +26,20 @@ end
 
 grid on;
 xlabel('Denbora (s)');
-ylabel('Indarra');
-xlim([min(Denbora_sec), 900 * 0.02]);
+ylabel('Azelerazioa (g)');
+xlim([min(Denbora_sec), 1000 * 0.02]);
 title(sprintf('Paladen detekzioa (Palada kopurua: %d)', max(paladaKop)));
-legend('Seinalea', 'Goi Muga', 'Behe Muga', 'Indar Minimoa (1000)', 'Palada detektatuta', 'Location', 'northeast');
+legend('Seinalea', 'Goi Muga', 'Behe Muga', 'Indar Minimoa (0,2g)', 'Palada detektatuta', 'Location', 'northeast');
+
+figure('Name', 'Behe paseko iragazia', 'NumberTitle', 'off');
+hold on;
+
+plot(Denbora_sec, Seinalea/1000, 'b-', 'LineWidth', 1.8);
+plot(Denbora_sec, IragaziGabe/1000, ':', 'Color', [0.85, 0.45, 0.1], 'LineWidth', 1.2);
+
+grid on;
+xlabel('Denbora (s)');
+ylabel('Azelerazioa (g)');
+xlim([min(Denbora_sec), 1000 * 0.02]);
+title('Jatorriko seinalea eta iragazitako seinalea');
+legend('Iragazitako seinalea', 'Iragazi gabeko seinalea', 'Location', 'northeast');
