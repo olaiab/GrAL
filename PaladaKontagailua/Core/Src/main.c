@@ -107,6 +107,7 @@ int main(void)
   BSP_LED_Init(LED_BLUE);
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Init(LED_RED);
+  BSP_LED_On(LED_RED);
 
   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
   BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
@@ -115,6 +116,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   AZ_Init();
+  BSP_LED_Off(LED_RED);
   BSP_LED_On(LED_GREEN); // Dena ondo joan dela ziurtatzeko
 
   while (1)

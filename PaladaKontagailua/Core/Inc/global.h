@@ -13,6 +13,7 @@
 #include "lis2dw12.h"
 #include "stm32wlxx_nucleo_bus.h"
 #include "math.h"
+#include "stm32wlxx_hal_i2c.h"
 
 #include "entrenamendua.h"
 #include "main.h"

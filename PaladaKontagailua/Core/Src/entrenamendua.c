@@ -88,21 +88,20 @@ void AZ_Init()
 	io_ctx.Init     = BSP_I2C2_Init;
 	io_ctx.DeInit   = BSP_I2C2_DeInit;
 	io_ctx.BusType  = LIS2DW12_I2C_BUS;
-	io_ctx.Address  = 0x32;
+	io_ctx.Address  = LIS2DW12_I2C_ADD_H;
 	io_ctx.WriteReg = BSP_I2C2_WriteReg;
 	io_ctx.ReadReg  = BSP_I2C2_ReadReg;
 	io_ctx.GetTick  = HAL_GetTick;
 
 	if (LIS2DW12_RegisterBusIO(&Acc, &io_ctx) != LIS2DW12_OK)
 	{
-		BSP_LED_On(LED_BLUE);
+		//BSP_LED_On(LED_BLUE);
 		Error_Handler();
 	}
 
-
 	if (LIS2DW12_Init(&Acc) != LIS2DW12_OK)
 	{
-		//BSP_LED_On(LED_RED);
+		BSP_LED_On(LED_BLUE);
 		Error_Handler();
 	}
 
@@ -111,7 +110,7 @@ void AZ_Init()
 
 void AZ_Tratatu()
 {
-	//	MAHAIAN GELDIRIK 4132 = 1G
+	//	MAHAIAN GELDIRIK 4152 = 1G
 	LIS2DW12_AxesRaw_t acc_raw;
 
 	LIS2DW12_ACC_GetAxesRaw(&Acc, &acc_raw);	//lis2dw12.c
@@ -135,11 +134,11 @@ void AZ_Tratatu()
 
 	if (paladak.batazbeste == 0.0f)
 	{
-		paladak.batazbeste = fabsf(paladak.filtr);
+		paladak.batazbeste = paladak.filtr;
 	}
 	else
 	{
-		paladak.batazbeste = 0.98f * paladak.batazbeste + 0.02f * fabsf(paladak.filtr);
+		paladak.batazbeste = 0.98f * paladak.batazbeste + 0.02f * paladak.filtr;
 	}
 
 	paladak.goiMuga  = 1.4f * paladak.batazbeste;
